@@ -5,24 +5,30 @@ import NumberInput from './NumberInput';
 class App extends Component {
 
   state = {
-    number: 1234,
+    number: '',
     showInput: false,
   };
 
   handleInput = (input) => {
+    const { number } = this.state;
+
     if(Number.isInteger(input)) {
       this.setState({
-        number: parseInt('' + this.state.number  + input),
+        number: ('' + number  + input),
       });
     }
+
     switch(input) {
       case "delete":
         this.setState({
-          number: Math.floor(this.state.number / 10),
+          number: number.substring(0, number.length - 1),
         });
         return;
       case "done":
         this.setState({ showInput: false });
+        return;
+      default:
+        return;
     }
   }
 
